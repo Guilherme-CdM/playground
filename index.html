@@ -1,11 +1,121 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> BarPress </title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1020" />
+  <title>BarPress: Impulse Ascension</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-    <p>Bom</p>
+  <canvas id="fx" aria-hidden="true"></canvas>
+
+  <div id="app" class="app stage-0">
+    <header class="topbar glass">
+      <div class="brand">
+        <div class="brand-kicker">IMPULSE ENGINE</div>
+        <h1>BarPress</h1>
+        <p>Press the spacebar. Grow from a spark to a universe-spanning intelligence.</p>
+      </div>
+
+      <div class="hud">
+        <div class="stat"><span>Impulse Energy</span><strong id="energyValue">0</strong></div>
+        <div class="stat"><span>Per Press</span><strong id="tapValue">+1</strong></div>
+        <div class="stat"><span>Passive /s</span><strong id="passiveValue">0</strong></div>
+        <div class="stat"><span>Combo</span><strong id="comboValue">x1.00</strong></div>
+        <div class="stat"><span>Shards</span><strong id="shardValue">0</strong></div>
+        <div class="stat"><span>Relics</span><strong id="relicValue">0</strong></div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="core-panel glass">
+        <div class="core-ambient"></div>
+        <div class="stage-label" id="stageLabel">Primitive Era</div>
+        <button id="coreButton" class="core-button" type="button" aria-label="Press Space to generate Impulse Energy">
+          <span class="core-ring ring-1"></span>
+          <span class="core-ring ring-2"></span>
+          <span class="core-ring ring-3"></span>
+          <span class="core-orb"></span>
+          <span class="core-text">
+            <strong>SPACE</strong>
+            <small>Impulse Drive</small>
+          </span>
+        </button>
+
+        <div class="core-meta">
+          <div class="meta-card"><span>Rhythm</span><strong id="rhythmValue">Neutral</strong></div>
+          <div class="meta-card"><span>Precision</span><strong id="precisionValue">—</strong></div>
+          <div class="meta-card"><span>Income</span><strong id="incomeValue">0 /s</strong></div>
+        </div>
+
+        <div class="message" id="message">Press space once to awaken the engine.</div>
+        <div class="hint">Keyboard: SPACE. Mobile: tap the core. Hold to charge. Time presses to the beat for critical impulses.</div>
+      </section>
+
+      <section class="side-column">
+        <section class="glass panel">
+          <div class="panel-head">
+            <h2>Research & Upgrades</h2>
+            <span id="upgradeCount">0 purchased</span>
+          </div>
+          <div id="upgradeList" class="cards"></div>
+        </section>
+
+        <section class="glass panel">
+          <div class="panel-head">
+            <h2>Prestige Systems</h2>
+            <span>Permanent progression</span>
+          </div>
+          <div class="prestige-grid">
+            <button id="ascendButton" class="action-button" type="button">
+              <strong>Ascend</strong>
+              <span>Reset the run for Shards</span>
+            </button>
+            <button id="collapseButton" class="action-button" type="button">
+              <strong>Collapse Universe</strong>
+              <span>Risk the layer for Relics</span>
+            </button>
+          </div>
+          <div class="microcopy" id="prestigeInfo">Unlocks after enough lifetime energy.</div>
+        </section>
+
+        <section class="glass panel">
+          <div class="panel-head">
+            <h2>Systems</h2>
+            <span>Save, export, and recovery</span>
+          </div>
+          <div class="control-row">
+            <button id="saveButton" class="small-button" type="button">Save Now</button>
+            <button id="exportButton" class="small-button" type="button">Export</button>
+            <button id="importButton" class="small-button" type="button">Import</button>
+            <button id="resetButton" class="small-button danger" type="button">Hard Reset</button>
+          </div>
+          <textarea id="saveBox" class="save-box" placeholder="Export appears here. Paste a save to import."></textarea>
+        </section>
+      </section>
+
+      <section class="glass panel wide">
+        <div class="panel-head">
+          <h2>Achievements</h2>
+          <span id="achievementCount">0 / 0</span>
+        </div>
+        <div id="achievementList" class="achievement-grid"></div>
+      </section>
+
+      <section class="glass panel wide">
+        <div class="panel-head">
+          <h2>Live Log</h2>
+          <span>Events, boosts, and milestones</span>
+        </div>
+        <div id="logList" class="log-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="./js/main.js"></script>
 </body>
 </html>
